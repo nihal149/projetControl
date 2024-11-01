@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter une Tâche</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Ajouter une Tâche au Projet <span th:text="${projetId}"></span></h1>
+    <form th:action="@{/taches/projet/{id}(id=${projetId})}" method="post" th:object="${tache}">
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" th:field="*{nom}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" th:field="*{description}" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="etat" class="form-label">État</label>
+            <select class="form-select" id="etat" th:field="*{etat}" required>
+                <option value="À faire">À faire</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminé">Terminé</option>
+            </select>
+        </div>
+        <input type="hidden" th:field="*{projet.id}" th:value="${projetId}" />
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <a th:href="@{/taches/projet/{id}(id=${projetId})}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+</body>
+</html>

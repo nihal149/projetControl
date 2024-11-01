@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Tâches - ${projet.nom}</title>
+    <style>
+        body {
+          background-color: #f5f5dc; /* Beige très clair */
+          text-align: center; /* Centrer le texte */
+        }
+
+        h1 {
+          margin-bottom: 20px; /* Espacement sous le titre */
+          color: #000; /* Couleur du texte noir */
+        }
+
+        /* Style pour encadrer le titre "Tâches Existantes" */
+        .encadre {
+          display: inline-block;
+          padding: 10px 20px; /* Espacement interne */
+          border: 2px solid black; /* Bordure noire */
+          border-radius: 8px; /* Coins arrondis */
+          background-color: #e6e6e6; /* Fond gris clair */
+          margin-top: 20px;
+        }
+
+        table {
+          margin: 20px auto; /* Centrer le tableau */
+          border-collapse: collapse; /* Fusionner les bordures */
+        }
+
+        th, td {
+          border: 1px solid black; /* Bordure des cellules */
+          padding: 10px; /* Rembourrage interne */
+        }
+
+        th {
+          background-color: #d3d3d3; /* Fond gris clair pour l'en-tête */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Titre principal -->
+<h1>Tâches pour le projet : <span th:text="${projet.nom}"></span></h1>
+
+<!-- Formulaire pour ajouter une nouvelle tâche -->
+<form action="#" th:action="@{/taches/projet/{projetId}(projetId=${projet.id})}"
+      th:object="${tache}" method="post">
+
+    <label for="nom">Nom de la Tâche</label>
+    <input type="text" th:field="*{nom}" id="nom" placeholder="Nom de la tâche" required />
+    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+
+    <br><br>
+
+    <label for="description">Description</label>
+    <textarea th:field="*{description}" id="description"
+              placeholder="Description de la tâche" required></textarea>
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+
+    <br><br>
+
+    <label for="etat">État</label>
+    <select th:field="*{etat}" id="etat" required>
+        <option value="">Sélectionnez l'état</option>
+        <option value="À faire">À faire</option>
+        <option value="En cours">En cours</option>
+        <option value="Terminé">Terminé</option>
+    </select>
+    <span th:if="${#fields.hasErrors('etat')}" th:errors="*{etat}"></span>
+
+    <br><br>
+
+    <input type="submit" value="Ajouter Tâche" />
+</form>
+
+<!-- Titre encadré -->
+<h2 class="encadre">Tâches Existantes</h2>
+
+<!-- Tableau des tâches -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>État</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tache : ${taches}">
+        <td th:text="${tache.id}"></td>
+        <td th:text="${tache.nom}"></td>
+        <td th:text="${tache.description}"></td>
+        <td th:text="${tache.etat}"></td>
+        <td>
+            <form action="#" th:action="@{/taches/delete/{id}(id=${tache.id})/projet/${projet.id}}"
+                  method="post" style="display:inline;">
+                <input type="submit" value="Supprimer" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+

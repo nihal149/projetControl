@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un Projet</title>
+</head>
+<body>
+<h1>Ajouter un Nouveau Projet</h1>
+<form action="#" th:action="@{/projets}" th:object="${projet}" method="post">
+  <label for="nom">Nom du Projet</label>
+  <input type="text" th:field="*{nom}" id="nom" placeholder="Nom du projet" required />
+  <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+
+  <label for="dateDebut">Date de Début</label>
+  <input type="date" th:field="*{dateDebut}" id="dateDebut" required />
+  <span th:if="${#fields.hasErrors('dateDebut')}" th:errors="*{dateDebut}"></span>
+
+  <label for="dateFin">Date de Fin</label>
+  <input type="date" th:field="*{dateFin}" id="dateFin" required />
+  <span th:if="${#fields.hasErrors('dateFin')}" th:errors="*{dateFin}"></span>
+
+  <input type="submit" value="Ajouter Projet" />
+</form>
+
+<a th:href="@{/projets}">Retour à la liste des projets</a>
+</body>
+</html>

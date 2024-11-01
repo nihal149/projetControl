@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter Projet</title>
+  <style>
+    body {
+      background-color: #f5f5dc; /* Beige très clair */
+      text-align: center; /* Centrer le texte */
+    }
+
+    h1 {
+      margin-bottom: 20px; /* Espacement sous le titre */
+      color: #000; /* Couleur du texte en noir */
+    }
+
+    /* Style pour encadrer le titre Projets Existants */
+    .encadre {
+      display: inline-block; /* Ajuster le cadre autour du texte */
+      padding: 10px 20px; /* Rembourrage interne */
+      border: 2px solid black; /* Bordure noire */
+      border-radius: 8px; /* Coins arrondis */
+      background-color: #e6e6e6; /* Fond gris clair */
+      margin-top: 20px; /* Espacement au-dessus du titre */
+    }
+
+    table {
+      margin: 20px auto; /* Centrer le tableau avec un espacement au-dessus */
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black; /* Bordure des cellules */
+      padding: 10px; /* Rembourrage interne des cellules */
+    }
+
+    th {
+      background-color: #d3d3d3; /* Fond gris clair pour l'en-tête */
+    }
+  </style>
+</head>
+<body>
+<h1>Ajouter un Nouveau Projet</h1>
+
+<form action="#" th:action="@{/projets}" th:object="${projet}" method="post">
+  <label for="nom">Nom du Projet</label>
+  <input type="text" th:field="*{nom}" id="nom" placeholder="Nom du projet" required />
+  <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+
+  <label for="dateDebut">Date de Début</label>
+  <input type="date" th:field="*{dateDebut}" id="dateDebut" required />
+
+  <label for="dateFin">Date de Fin</label>
+  <input type="date" th:field="*{dateFin}" id="dateFin" required />
+
+  <input type="submit" value="Ajouter Projet" />
+</form>
+
+<!-- Encadrer le titre "Projets Existants" -->
+<h2 class="encadre">Projets Existants</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Date de Début</th>
+    <th>Date de Fin</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="projet : ${projets}">
+    <td th:text="${projet.id}"></td>
+    <td th:text="${projet.nom}"></td>
+    <td th:text="${projet.dateDebut}"></td>
+    <td th:text="${projet.dateFin}"></td>
+    <td>
+      <form action="#" th:action="@{/projets/delete/{id}(id=${projet.id})}" method="post" style="display:inline;">
+        <input type="submit" value="Supprimer" />
+      </form>
+      <!-- Lien Détails supprimé -->
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
