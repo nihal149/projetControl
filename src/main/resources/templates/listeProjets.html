@@ -5,37 +5,46 @@
   <title>Ajouter Projet</title>
   <style>
     body {
-      background-color: #f5f5dc; /* Beige très clair */
-      text-align: center; /* Centrer le texte */
+      background: url('images/projet.jpg') no-repeat center center fixed; /* Ajouter l'image en arrière-plan */
+      background-size: cover; /* Ajuster l'image pour couvrir tout l'arrière-plan */
+      text-align: center;
     }
 
     h1 {
-      margin-bottom: 20px; /* Espacement sous le titre */
-      color: #000; /* Couleur du texte en noir */
+      margin-bottom: 20px;
+      color: #fff; /* Couleur du texte en blanc */
+      font-weight: bold; /* Rendre le texte en gras */
+      display: inline-block; /* Pour appliquer l'encadré */
+      padding: 10px 20px; /* Rembourrage interne pour l'encadré */
+      border: 2px solid #003366; /* Bordure bleu foncé */
+      border-radius: 8px; /* Coins arrondis */
+      background-color: #003366; /* Fond bleu foncé */
     }
 
     /* Style pour encadrer le titre Projets Existants */
     .encadre {
-      display: inline-block; /* Ajuster le cadre autour du texte */
-      padding: 10px 20px; /* Rembourrage interne */
-      border: 2px solid black; /* Bordure noire */
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #003366; /* Bordure bleu foncé */
       border-radius: 8px; /* Coins arrondis */
-      background-color: #e6e6e6; /* Fond gris clair */
-      margin-top: 20px; /* Espacement au-dessus du titre */
+      background-color: #003366; /* Fond bleu foncé */
+      margin-top: 20px;
+      color: white; /* Couleur du texte en blanc */
     }
 
     table {
-      margin: 20px auto; /* Centrer le tableau avec un espacement au-dessus */
+      margin: 20px auto;
       border-collapse: collapse;
     }
 
     th, td {
-      border: 1px solid black; /* Bordure des cellules */
-      padding: 10px; /* Rembourrage interne des cellules */
+      border: 1px solid black;
+      padding: 10px;
     }
 
     th {
-      background-color: #d3d3d3; /* Fond gris clair pour l'en-tête */
+      background-color: #003366; /* Fond bleu foncé pour l'en-tête */
+      color: white; /* Couleur du texte en blanc pour le contraste */
     }
   </style>
 </head>
@@ -79,10 +88,10 @@
       <form action="#" th:action="@{/projets/delete/{id}(id=${projet.id})}" method="post" style="display:inline;">
         <input type="submit" value="Supprimer" />
       </form>
-      <!-- Lien Détails supprimé -->
     </td>
   </tr>
   </tbody>
 </table>
 </body>
 </html>
+
