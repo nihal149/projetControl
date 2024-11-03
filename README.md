@@ -26,5 +26,6 @@ Ce projet consiste à créer une application web pour gérer des projets et leur
    - Lorsqu'un utilisateur clique sur un projet, il est redirigé vers cette page qui affiche toutes les tâches associées à ce projet.
    - Chaque tâche est présentée avec son nom, sa description et son état.
 
-https://github.com/user-attachments/assets/685d5dff-3850-48d9-bbc6-5f5cb3b0f0ff
+
+https://github.com/user-attachments/assets/6338f75b-8b8c-43a0-8dc7-9a3c3854a409
 
