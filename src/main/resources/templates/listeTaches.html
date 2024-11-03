@@ -49,6 +49,23 @@
             background-color: #003366; /* Fond bleu foncé pour l'en-tête */
             color: white; /* Couleur du texte en blanc pour l'en-tête */
         }
+
+        /* Style du bouton de retour */
+        .button-retour {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: white;
+            background-color: #003366; /* Bleu foncé */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .button-retour:hover {
+            background-color: #005599; /* Bleu plus clair au survol */
+        }
     </style>
 </head>
 <body>
@@ -116,6 +133,9 @@
     </tr>
     </tbody>
 </table>
+
+<!-- Bouton de retour -->
+<a href="#" onclick="window.history.back();" class="button-retour">Retour</a>
 
 </body>
 </html>
